@@ -1,8 +1,12 @@
 FROM nginx:alpine3.18
 
 RUN apk add --no-cache \
-        python \
-        aws-cli
+        python3 \
+        py3-pip \
+    && pip3 install --upgrade pip \
+    && pip3 install --no-cache-dir \
+        awscli \
+    && rm -rf /var/cache/apk/*
 
 ADD configs/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD configs/nginx/ssl /etc/nginx/ssl
