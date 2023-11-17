@@ -1,10 +1,10 @@
-FROM nginx:1.12.0-alpine
+FROM nginx:alpine3.18
 
 RUN apk -v --update add \
         python \
         py-pip \
         && \
-    pip install --upgrade pip awscli==1.11.92 && \
+    pip install --upgrade pip awscli && \
     apk -v --purge del py-pip && \
     rm /var/cache/apk/*
 
