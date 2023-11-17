@@ -2,6 +2,11 @@
 
 nx_conf=/etc/nginx/nginx.conf
 
+if ${NGNIX_CFG_PATH} != ""
+then
+    nx_conf=${NGNIX_CFG_PATH}
+fi
+
 AWS_IAM='http://169.254.169.254/latest/dynamic/instance-identity/document'
 AWS_FOLDER='/root/.aws'
 
@@ -72,7 +77,7 @@ fi
 
 # update the auth token
 if [ "$REGISTRY_ID" = "" ]
-then 
+then
     aws_cli_exec=$(aws ecr get-login --no-include-email)
 else
     aws_cli_exec=$(aws ecr get-login --no-include-email --registry-ids $REGISTRY_ID)
