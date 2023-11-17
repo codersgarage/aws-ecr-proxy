@@ -1,12 +1,8 @@
 FROM nginx:alpine3.18
 
-RUN apk -v --update add \
+RUN apk --no-cache \
         python \
-        py-pip \
-        && \
-    pip install --upgrade pip awscli && \
-    apk -v --purge del py-pip && \
-    rm /var/cache/apk/*
+        aws-cli
 
 ADD configs/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD configs/nginx/ssl /etc/nginx/ssl
