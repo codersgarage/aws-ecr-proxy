@@ -9,7 +9,6 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/*
 
 ADD configs/nginx/nginx.conf /etc/nginx/nginx.conf
-ADD configs/nginx/ssl /etc/nginx/ssl
 
 ADD configs/entrypoint.sh /entrypoint.sh
 ADD configs/auth_update.sh /auth_update.sh
