@@ -1,6 +1,6 @@
 FROM nginx:alpine3.18
 
-RUN apk --no-cache \
+RUN apk add --no-cache \
         python \
         aws-cli
 
