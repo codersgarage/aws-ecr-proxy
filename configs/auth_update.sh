@@ -1,6 +1,10 @@
 #!/bin/sh
 
 nx_conf=/etc/nginx/nginx.conf
+if [ -n $NGNIX_CFG_PATH ]
+then
+    nx_conf=${NGNIX_CFG_PATH}
+fi
 
 # update the auth token
 auth=$(grep  X-Forwarded-User ${nx_conf} | awk '{print $4}'| uniq|tr -d "\n\r")
