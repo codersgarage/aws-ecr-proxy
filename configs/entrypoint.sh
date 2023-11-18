@@ -2,7 +2,7 @@
 
 nx_conf=/etc/nginx/nginx.conf
 
-if ${NGNIX_CFG_PATH} != ""
+if [ -n $NGNIX_CFG_PATH ]
 then
     nx_conf=${NGNIX_CFG_PATH}
 fi
