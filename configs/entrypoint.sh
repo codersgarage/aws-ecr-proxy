@@ -4,7 +4,7 @@ nx_conf=/etc/nginx/nginx.conf
 
 if [ -n $NGNIX_CFG_PATH ]
 then
-    nx_conf=${NGNIX_CFG_PATH}
+    cp ${NGNIX_CFG_PATH} ${nx_conf}
 fi
 
 AWS_IAM='http://169.254.169.254/latest/dynamic/instance-identity/document'
