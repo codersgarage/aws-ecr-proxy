@@ -1,9 +1,5 @@
 # AWS ECR anonymous proxy
 
-Based on official nginx alpine.
-
-[Docker image repository](https://hub.docker.com/r/catalinpan/aws-ecr-proxy/)
-
 The container will renew the aws token every 6 hours.
 
 Variables:
@@ -15,9 +11,9 @@ RENEW_TOKEN - default 6h
 REGISTRY_ID - optional, used for cross account access
 ```
 
-### Health check 
+### Health check
 
-To check the health of the container/registry use ```FQDN/ping``` which will give you the heath of the registry with the correct status code. 
+To check the health of the container/registry use ```FQDN/ping``` which will give you the heath of the registry with the correct status code.
 
 ### AWS instance with IAM role
 
@@ -53,14 +49,14 @@ docker run -e AWS_SECRET='YOUR_AWS_SECRET' \
 -d catalinpan/aws-ecr-proxy
 ```
 ##### With a valid AWS CLI configuration file
-The configuration should look like below example.  
+The configuration should look like below example.
 ```
 cat ~/.aws/config
 ```
 ```
 [default]
 # region example eu-west-1
-region = REGION     
+region = REGION
 aws_access_key_id = YOUR_AWS_KEY
 aws_secret_access_key = YOUR_AWS_SECRET
 ```
