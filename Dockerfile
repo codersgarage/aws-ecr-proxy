@@ -6,6 +6,7 @@ RUN apk add --no-cache \
     python3 \
     py3-pip \
     bash \
+    curl \
     && pip3 install --upgrade pip --break-system-packages \
     && pip3 install --no-cache-dir --break-system-packages \
         awscli \
