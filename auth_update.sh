@@ -59,11 +59,22 @@ if ! haproxy -c -f ${HAPROXY_CFG}; then
    exit 1
 fi
 
-# Reload if HAProxy is running
 if [ -f /var/run/haproxy.pid ]; then
-   MASTER_PID=$(cat /var/run/haproxy.pid)
-   if kill -0 $MASTER_PID 2>/dev/null; then
-       log "Sending reload signal to HAProxy master process"
-       kill -SIGUSR2 $MASTER_PID
-   fi
+    MASTER_PID=$(cat /var/run/haproxy.pid)
+    if kill -0 $MASTER_PID 2>/dev/null; then
+        log "Sending graceful reload signal to HAProxy master process"
+        # Send SIGUSR2 for graceful reload
+        kill -SIGUSR2 $MASTER_PID
+
+        # Wait for new worker to start (optional)
+        sleep 5
+
+        # Verify HAProxy is still running
+        if ! kill -0 $MASTER_PID 2>/dev/null; then
+            log "Error: HAProxy master process not running after reload"
+            exit 1
+        fi
+
+        log "HAProxy reload completed successfully"
+    fi
 fi
