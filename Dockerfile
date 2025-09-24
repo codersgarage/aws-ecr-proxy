@@ -12,7 +12,7 @@ RUN apk add --no-cache \
         awscli \
     && rm -rf /var/cache/apk/*
 
-COPY haproxy/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+COPY haproxy/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg.tmpl
 COPY entrypoint.sh /entrypoint.sh
 COPY auth_update.sh /auth_update.sh
 

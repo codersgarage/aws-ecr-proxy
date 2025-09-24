@@ -1,6 +1,7 @@
 #!/bin/sh
 
 HAPROXY_CFG=/usr/local/etc/haproxy/haproxy.cfg
+HAPROXY_CFG_TEMPLATE=${HAPROXY_CFG}.tmpl
 
 log() {
    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
@@ -44,6 +45,7 @@ fi
 log "Updating config with URL: ${reg_url_clean} and auth token length: ${#auth_n}"
 
 # Update HAProxy config with error checking
+cp ${HAPROXY_CFG_TEMPLATE} ${HAPROXY_CFG}
 if ! sed -i "s|REGISTRY_URL|${reg_url_clean}|g" ${HAPROXY_CFG}; then
    log "Error: Failed to update registry URL in config"
    exit 1
