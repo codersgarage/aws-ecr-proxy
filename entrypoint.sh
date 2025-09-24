@@ -26,7 +26,7 @@ monitor_haproxy &
 
 # Start auth renewal in background
 (while true; do
-    sleep 6h
+    sleep ${RENEW_INTERVAL:-6h}
     # If auth update fails, log and continue trying
     if ! /auth_update.sh; then
         echo "[$(date '+%Y-%m-%d %H:%M:%S')] Auth update failed, will retry in 5 minutes"
